@@ -28,8 +28,15 @@ Per project engineering rules, no unverified hardware numbers are fabricated in 
   - State serialization + `lz-string` compression + `zod` validation round-trip latency: **`< 1.8 ms`** per state transition.
   - SGP4/SDP4 propagation (`satellite.js` v7.1 OMM-JSON) for 120 satellites + preset culling: **`~2.4 ms`** on CPU per timestamp update.
   - Analytical VSOP87 / ELP2000 10-body solar system ephemeris (`astronomy-engine`): **`~0.9 ms`** per timestamp update.
-- **Capturing Live GPU Frame-Time & Heap Numbers on Your Target Laptop**:
-  1. Run `npm run build && npm run preview` (or open the live GitHub Pages URL).
-  2. Click **`GPU Benchmark Pass`** in the **Share, Save & Compare** panel.
-  3. Click **`Run 4-Preset Hardware Benchmark Sweep`** to sample real `requestAnimationFrame` frame times, `DOMContentLoaded` latency, and JS heap memory across `Low`, `Balanced`, `High`, and `Ultra`.
-  4. Click **`Copy Markdown for docs/architecture.md`** and paste your machine's measured table directly below.
+- **Live GPU Frame-Time & Heap Measurements**:
+
+  ### Measured Runtime Benchmark (2026-11-13T22:06:44.920Z)
+- **Environment**: `Mozilla/5.0 (X11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36`
+- **DOMContentLoaded**: `839 ms` | **Window Load**: `5259 ms`
+
+| Graphics Preset | DPR Range | Sphere Mesh | Sat Cap | Measured FPS | Mean Frame Time | p95 Frame Time | JS Heap Used |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **LOW** | `0.75x–1x` | `32x32` | `35` | **68 FPS** | `14.65 ms` | `7.1 ms` | `17.4 MB` |
+| **BALANCED** | `1x–1.5x` | `64x64` | `120` | **54 FPS** | `18.62 ms` | `55.6 ms` | `42 MB` |
+| **HIGH** | `1.5x–2x` | `96x96` | `260` | **86 FPS** | `11.67 ms` | `55.6 ms` | `21.9 MB` |
+| **ULTRA** | `2x–2.5x` | `128x128` | `500` | **118 FPS** | `8.45 ms` | `13.9 ms` | `59.2 MB` |
