@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHRONOTERRA // Planetary Visualization Engine</title>
+
+    <!-- Space Typography: Orbitron (Display), Space Grotesk (UI), JetBrains Mono (Telemetry) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --font-display: 'Orbitron', sans-serif;
+        --font-ui: 'Space Grotesk', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #000000;
+        color: #e2e8f0;
+        overflow: hidden;
+        font-family: var(--font-ui) !important;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Apply Space Fonts globally across all panels, buttons, and inputs */
+      header,
+      footer,
+      aside,
+      section,
+      div,
+      span,
+      label,
+      button,
+      select,
+      input,
+      table {
+        font-family: var(--font-ui) !important;
+      }
+
+      header strong,
+      aside > div:first-child strong,
+      [ role="dialog" ] strong {
+        font-family: var(--font-display) !important;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      code,
+      pre,
+      input[type="number"],
+      input[type="date"],
+      td {
+        font-family: var(--font-mono) !important;
+      }
+
+      /* Sleek custom scrollbars */
+      ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(5, 7, 13, 0.6);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #38bdf8;
+      }
+
+      /* Unified Single-Drawer Container: overrides legacy scattered fixed coordinates */
+      .ct-single-drawer-host {
+        position: fixed;
+        top: 62px;
+        left: 148px;
+        width: 360px;
+        max-height: calc(100vh - 165px);
+        z-index: 24;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+      }
+
+      .ct-single-drawer-host > aside {
+        position: static !important;
+        width: 100% !important;
+        max-height: calc(100vh - 175px) !important;
+        overflow-y: auto !important;
+        background: rgba(7, 12, 24, 0.88) !important;
+        backdrop-filter: blur(14px) !important;
+        border: 1px solid rgba(56, 189, 248, 0.35) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75) !important;
+        padding: 14px !important;
+      }
+
+      /* Compact Epistemic Banners so they sit neatly at top-right instead of blocking the globe */
+      [data-testid="deep-time-epistemic-banner"],
+      [data-testid="event-epistemic-banner"],
+      [data-testid="future-epistemic-banner"] {
+        top: 62px !important;
+        left: auto !important;
+        right: 16px !important;
+        transform: none !important;
+        width: 380px !important;
+        max-width: 90vw !important;
+        min-width: 260px !important;
+        backdrop-filter: blur(12px) !important;
+        border-radius: 8px !important;
+        padding: 8px 12px !important;
+        font-size: 11px !important;
+      }
+
+      /* Modern button hover polish */
+      button {
+        transition: all 0.15s ease;
+      }
+      button:not(:disabled):hover {
+        filter: brightness(1.18);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

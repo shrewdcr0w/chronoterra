@@ -1,0 +1,19 @@
+# Node, Vite, & Build Outputs
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+coverage/
+
+# Python build-time data pipeline
+tools/data-pipeline/.venv/
+__pycache__/
+*.py[cod]
+*.tif.aux.xml
+
+# Logs & OS Files
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.DS_Store
